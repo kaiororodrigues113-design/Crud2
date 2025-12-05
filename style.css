@@ -1,0 +1,497 @@
+/* ========================= */
+/*          RESET            */
+/* ========================= */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* ========================= */
+/*      PALETA VENOM RAGE    */
+/* ========================= */
+:root{
+    --venom-black: #020003;
+    --venom-purple: #7a00ff;
+    --venom-fuchsia: #c000ff;
+    --venom-acid: #39ff14;
+    --venom-dark-purple: #2d0040;
+    --venom-blood: #ff0066;
+
+    --primary-color: var(--venom-purple);
+    --secundary-color: #B88CFF;
+    --shadow-color: var(--venom-purple);
+    --text-color: #FFF;
+    --neon-pink: var(--venom-fuchsia);
+    --neon-green: var(--venom-acid);
+    --neon-purple: var(--venom-purple);
+
+    --venom-glow: 0 0 25px #7a00ff, 0 0 50px #7a00ff;
+
+    --mouse-x: 50vw;
+    --mouse-y: 50vh;
+}
+
+/* ========================= */
+/*            BODY           */
+/* ========================= */
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Karla', sans-serif;
+    position:relative;
+
+    background:
+        radial-gradient(circle at 50% 20%, #14001e 0%, #050009 60%, #000 100%);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ===== GOSMA VENOM ANIMADA ===== */
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    top:-200px;
+    left:0;
+    width:100%;
+    height:200px;
+    background: url("https://i.imgur.com/SwZxRwC.png");
+    background-size: cover;
+    opacity: .15;
+    filter: drop-shadow(0 0 20px #7a00ff);
+    animation: venom-drip 10s linear infinite;
+    pointer-events:none;
+}
+
+body::after{
+    animation-duration: 14s;
+    opacity:.22;
+}
+
+@keyframes venom-drip{
+    0%{ transform: translateY(-200px); }
+    100%{ transform: translateY(100vh); }
+}
+
+/* ========================= */
+/*          HEADER           */
+/* ========================= */
+header{
+    background: linear-gradient(90deg, #3f0071, #1a002e);
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    box-shadow: 0 0 35px var(--venom-purple);
+    border-bottom: 2px solid var(--neon-pink);
+}
+
+.header-title{
+    color: white;
+    font-size: 2.3rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--neon-pink), 0 0 25px var(--neon-pink);
+}
+
+/* ========================= */
+/*            MAIN           */
+/* ========================= */
+main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    margin: 5vh auto;
+    padding: 50px;
+    background: rgba(10, 0, 20, .85);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 40px #7a00ff99;
+    border: 2px solid #b400ff55;
+    border-radius: 12px;
+    gap: 20px;
+}
+
+/* ========================= */
+/*           FOOTER          */
+/* ========================= */
+footer{
+    width:100%;
+    text-align: center;
+    font-weight: 200;
+    font-style: italic;
+    padding: 20px;
+    text-shadow: 0 0 15px #b400ff;
+}
+
+/* ========================= */
+/*           BUTTONS         */
+/* ========================= */
+.button{
+    border-style: none;
+    height: 40px;
+    padding: 6px 12px;
+    background-color: #0a0014;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+
+    position: relative;
+    overflow: hidden;
+
+    transition: .4s ease;
+    border: 1px solid var(--neon-pink);
+    box-shadow: 0 0 12px var(--neon-pink);
+
+    animation: venom-pulse 2.3s infinite ease-in-out;
+}
+
+@keyframes venom-pulse{
+    0%{ box-shadow: 0 0 6px #7a00ff; }
+    50%{ box-shadow: 0 0 22px #c000ff, 0 0 40px #7a00ff inset; }
+    100%{ box-shadow: 0 0 6px #7a00ff; }
+}
+
+.button::after{
+    content:"";
+    position:absolute;
+    top:-120%;
+    left:-20%;
+    width:150%;
+    height:300%;
+    background: radial-gradient(circle, rgba(122,0,255,.5), transparent 60%);
+    animation: venom-liquid 6s infinite linear;
+    opacity: .2;
+}
+
+@keyframes venom-liquid{
+    0%{ transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); }
+}
+
+.button:hover{
+    transform: scale(1.12) rotate(-1deg);
+    background-color: var(--venom-purple);
+    color: white;
+    text-shadow: 0 0 10px white;
+    box-shadow: 0 0 40px var(--neon-pink);
+}
+
+.button.blue{
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+button.green{
+    background-color: var(--neon-green);
+}
+
+button.red{
+    background-color: var(--venom-blood);
+}
+
+/* ===== MOBILE BUTTON ===== */
+@media(max-width:480px){
+    .button.mobile{
+        color:transparent;
+        font-size:0;
+        width:55px;
+        height:55px;
+        border-radius: 50%;
+        position:fixed;
+        top: 88vh;
+        left: 80vw;
+        border-color: var(--neon-pink);
+        box-shadow: 0 0 25px var(--neon-pink);
+    }
+    .button.mobile::before{
+        content: "+";
+        color: var(--neon-pink);
+        font-size:2.4rem;
+        text-shadow: 0 0 12px var(--neon-pink);
+    }
+}
+
+/* ========================= */
+/*           TABLE           */
+/* ========================= */
+.records{
+    width: 100%;
+    user-select: none;
+    text-align: left;
+    color: white;
+}
+
+.records th{
+    height: 50px;
+    background-color: #140022;
+    padding-left: 20px;
+    font-size: 1.2rem;    
+    text-shadow: 0 0 12px var(--neon-pink);
+    border-bottom: 1px solid var(--venom-purple);
+}
+
+.records td{
+    height: 50px;
+    padding-left: 20px;
+}
+
+.records tr:hover{
+    background-color: #1c0030;
+    box-shadow: 0 0 12px #7a00ff88;
+}
+
+.records th:last-child,
+.records td:last-child{
+    padding: 0;
+    min-width: 140px;
+    text-align: center;
+}
+
+@media(max-width:480px){
+    .records{
+        border-spacing: 5px;
+    }
+    .records thead{
+        display:none;
+    }
+    .records tr{
+        box-shadow: 0 0 15px var(--venom-purple);
+        border: 1px solid var(--venom-purple);
+        border-radius: 8px;
+        background: #120014;
+    }
+    .records td:not(:first-child){
+        display:flex;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    .records td{
+        margin:10px 0;
+    }
+}
+
+/* ========================= */
+/*           MODAL           */
+/* ========================= */
+.modal{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: #000000aa;
+    opacity: 0;
+    z-index: -1;
+    backdrop-filter: blur(8px);
+}
+
+.modal.active{
+    opacity: 1;
+    z-index: 1;
+}
+
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    width: 50vw;
+    margin: 15vh auto;
+    padding-bottom: 20px;
+    background-color: #0d0019;
+    box-shadow: 0 0 50px #7a00ff;
+    border: 2px solid #b300ff;
+    border-radius: 10px;
+
+    position: relative;
+    overflow:hidden;
+}
+
+.modal-content::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background: radial-gradient(circle, rgba(122,0,255,.4), transparent 60%);
+    opacity:.1;
+    animation: venom-float 12s linear infinite;
+}
+
+@keyframes venom-float{
+    0%{ transform: rotate(0deg); }
+    100%{ transform: rotate(360deg); }
+}
+
+.modal-header{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.1rem;
+    color: var(--neon-pink);
+    text-shadow: 0 0 15px var(--neon-pink);
+}
+
+.modal-close{
+    position: absolute;
+    right: 0;
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    color: var(--neon-pink);
+    text-shadow: 0 0 12px var(--neon-pink);
+}
+
+.modal-close:hover{
+    background-color: var(--neon-pink);
+    color: white;
+    box-shadow: 0 0 25px var(--neon-pink);
+}
+
+.modal-form{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.modal-field{
+    width: calc(50% - 10px);
+    height: 40px;
+    outline-style: none;
+    border-style: none;
+    box-shadow: 0 0 12px #7a00ff88;
+    padding: 0 10px;
+    font-size:1rem;
+    background: #000;
+    color: white;
+    border: 1px solid #7a00ff;
+}
+
+.modal-field:focus{
+    border: 2px solid #ff00dd;
+    box-shadow: 0 0 25px #ff00dd, 0 0 50px #7a00ff inset;
+}
+
+.modal-footer{
+    text-align: right;
+    padding: 0 20px;
+}
+
+@media (max-width:480px){
+    .modal{
+        top:100%;
+        transition: all 1s ease;
+    }
+    .modal.active{
+        top:0;
+    }
+    .modal-content{
+        margin:0;
+        width:100%;
+        position:fixed;
+        border-radius: 0;
+    }
+    .modal-field{
+        width:100%;
+    }
+}
+
+/* ===================================================== */
+/*                 MODO SIMBIOSE VENOM                   */
+/* ===================================================== */
+
+body::after{
+    content:"";
+    position:fixed;
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(122,0,255,.25), transparent 70%);
+    filter: blur(45px);
+    pointer-events:none;
+    z-index:-1;
+    transition: top .06s linear, left .06s linear;
+}
+
+main, header, footer, .modal-content{
+    transform:
+        perspective(850px)
+        rotateX(calc((var(--mouse-y) - 50vh) / -300))
+        rotateY(calc((var(--mouse-x) - 50vw) / 300));
+    transition: transform .15s ease-out;
+}
+
+.button::before{
+    content:"";
+    position:absolute;
+    width:160%;
+    height:160%;
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    background: radial-gradient(circle, rgba(255,0,255,.25), transparent 70%);
+    filter: blur(25px);
+    opacity:0;
+    transform: translate(-50%, -50%);
+    pointer-events:none;
+    transition: opacity .2s ease-out;
+}
+
+.button:hover::before{
+    opacity:.9;
+}
+
+.records tr{
+    transition: .12s ease-out;
+}
+
+.records tr:hover{
+    background-color: #1c0030;
+    box-shadow:
+        0 0 20px #7a00ff88,
+        0 0 55px rgba(192,0,255,0.35),
+        0 0 100px rgba(122,0,255,0.25);
+    transform:
+        scale(1.02)
+        translateX(calc((var(--mouse-x) - 50vw) / 80));
+}
+
+.modal-field{
+    transition: border-color .3s, box-shadow .3s, transform .15s;
+}
+
+.modal-field:hover{
+    transform:
+        scale(1.03)
+        translateX(calc((var(--mouse-x) - 50vw) / 200));
+    box-shadow: 
+        0 0 20px #ff00dd,
+        0 0 45px rgba(255,0,221,.35);
+}
+
+.modal-content::after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    pointer-events:none;
+    top: var(--mouse-y);
+    left: var(--mouse-x);
+    transform: translate(-50%, -50%);
+    opacity:.05;
+    background: radial-gradient(circle, rgba(192,0,255,.4), transparent 65%);
+    filter: blur(55px);
+    transition: top .1s linear, left .1s linear;
+}
